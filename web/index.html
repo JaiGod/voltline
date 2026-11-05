@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voltline - a pixel-art metroidvania</title>
+<meta name="description" content="Voltline: a Godot 4 pixel-art action platformer. Guide a courier robot through a ruined power plant. Play free in your browser.">
+<style>
+:root{--bg:#05060a;--panel:#0c1119;--line:#1f2b3a;--text:#e8eef5;--dim:#8a96a8;--volt:#ffd23f;--cyan:#5ef2ff;--pink:#ff4fa3}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-x:hidden}
+a{color:var(--cyan)}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+header{padding:56px 0 28px;text-align:center;position:relative}
+canvas#sky{position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.55}
+h1{font-size:clamp(44px,12vw,96px);letter-spacing:.08em;margin:0;color:var(--volt);text-shadow:4px 4px 0 #0b6f78,0 0 24px rgba(255,210,63,.35)}
+.tag{color:var(--dim);margin:6px 0 28px}
+.play{display:inline-block;background:var(--volt);color:#14100a;font-weight:800;font-size:22px;padding:16px 34px;border-radius:6px;text-decoration:none;box-shadow:0 6px 0 #a8820f,0 0 30px rgba(255,210,63,.4);transition:transform .1s}
+.play:hover{transform:translateY(-2px)}
+.play:active{transform:translateY(3px);box-shadow:0 2px 0 #a8820f}
+.links{margin-top:18px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:14px}
+.shot{width:100%;border:2px solid var(--line);border-radius:8px;image-rendering:pixelated;display:block}
+.hero{margin:26px 0}
+h2{color:var(--cyan);font-size:20px;letter-spacing:.12em;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.card b{color:var(--volt)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{color:var(--volt);white-space:nowrap}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+footer{color:var(--dim);text-align:center;padding:40px 0 50px;font-size:14px}
+kbd{background:#1b2433;border:1px solid #2d3a4f;border-bottom-width:3px;border-radius:4px;padding:0 6px;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <canvas id="sky"></canvas>
+  <div class="wrap">
+    <h1>VOLTLINE</h1>
+    <p class="tag">A power-plant odyssey &middot; pixel-art action platformer &middot; made with Godot 4</p>
+    <a class="play" href="play/">&#9654; PLAY IN BROWSER</a>
+    <div class="links">
+      <a href="https://github.com/JaiGod/voltline">Source on GitHub</a>
+      <a href="https://github.com/JaiGod/voltline#development-log">Dev log</a>
+      <a href="https://github.com/JaiGod">More JaiGod games</a>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+  <img class="shot hero" src="screenshots/core-warden.jpg" alt="Voltline gameplay: the courier robot fights the Core Warden boss">
+  <h2>THE STORY</h2>
+  <p>The city's power plant went dark. VOLT-7, a small courier robot with an energy blade and a parcel on its back, is sent down the maintenance line with one last delivery: <b style="color:var(--volt)">power</b>. Explore 15 connected sectors, from the cooling towers to the reactor core. Find upgrades that open new paths, and shut down the machines that took over the plant.</p>
+  <h2>FEATURES</h2>
+  <div class="grid">
+    <div class="card"><b>4 movement abilities</b><br>Double jump, wall-climb, dash and grapple. Each one opens sealed paths in places you have already been.</div>
+    <div class="card"><b>3 weapons</b><br>Energy blade, then a long arc-whip, then a plasma launcher. Blue barriers and red plating only give way to the right weapon.</div>
+    <div class="card"><b>6 enemies + 2 bosses</b><br>Sparkbugs, volt drones, turrets, spring hoppers, shield sentries and static mines. Then The Foreman and the Core Warden.</div>
+    <div class="card"><b>Tight controls</b><br>Coyote time, jump buffering, variable jump height, pogo down-attack, and you can slash enemy bolts out of the air.</div>
+    <div class="card"><b>Map and saves</b><br>A schematic map marks rooms, save stations, items you have not collected and bosses. Your progress saves automatically.</div>
+    <div class="card"><b>100% code-made</b><br>All the pixel art, the font, the sound effects and the chiptune music are generated in GDScript. The game has no image or audio files.</div>
+  </div>
+  <h2>CONTROLS</h2>
+  <table>
+    <tr><td>Move</td><td><kbd>&larr;</kbd><kbd>&rarr;</kbd> / <kbd>A</kbd><kbd>D</kbd> &middot; D-pad / stick</td></tr>
+    <tr><td>Jump</td><td><kbd>Z</kbd> / <kbd>Space</kbd> &middot; (A). Hold it to jump higher.</td></tr>
+    <tr><td>Attack</td><td><kbd>X</kbd> / <kbd>J</kbd> &middot; (X). Hold up or down to aim.</td></tr>
+    <tr><td>Dash</td><td><kbd>C</kbd> / <kbd>Shift</kbd> / <kbd>K</kbd> &middot; (B)</td></tr>
+    <tr><td>Grapple</td><td><kbd>V</kbd> / <kbd>L</kbd> &middot; (Y)</td></tr>
+    <tr><td>Map / Pause</td><td><kbd>M</kbd> / <kbd>Esc</kbd> &middot; Back / Start</td></tr>
+    <tr><td>Phone</td><td>On-screen buttons appear when you touch the screen. Portrait and landscape both work.</td></tr>
+  </table>
+  <h2>SCREENSHOTS</h2>
+  <div class="gallery">
+    <img class="shot" src="screenshots/title.jpg" alt="Title screen" loading="lazy">
+    <img class="shot" src="screenshots/foreman.jpg" alt="The Foreman boss fight" loading="lazy">
+    <img class="shot" src="screenshots/arc-furnace.jpg" alt="Arc Furnace grapple room" loading="lazy">
+    <img class="shot" src="screenshots/loading-dock.jpg" alt="Loading Dock start room" loading="lazy">
+  </div>
+  <p style="text-align:center;margin-top:34px"><a class="play" href="play/">&#9654; PLAY NOW</a></p>
+</main>
+<footer>Made by Jaineil Rana (JaKing) &middot; part of <a href="https://github.com/JaiGod">JaiGod</a> &middot; MIT licensed</footer>
+<script>
+// little lightning field behind the logo
+(function(){
+  const c=document.getElementById('sky'),x=c.getContext('2d');let w,h,bolts=[];
+  function rs(){w=c.width=c.offsetWidth;h=c.height=c.offsetHeight}
+  addEventListener('resize',rs);rs();
+  function bolt(){const pts=[];let px=Math.random()*w,py=0;while(py<h){pts.push([px,py]);px+=(Math.random()-.5)*40;py+=12+Math.random()*20}return{pts,l:1}}
+  function f(){x.clearRect(0,0,w,h);if(Math.random()<.04)bolts.push(bolt());
+    bolts.forEach(b=>{x.strokeStyle='rgba(94,242,255,'+b.l*.6+')';x.lineWidth=2;x.beginPath();b.pts.forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.stroke();b.l-=.05});
+    bolts=bolts.filter(b=>b.l>0);requestAnimationFrame(f)}
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches)f();
+})();
+</script>
+</body>
+</html>
