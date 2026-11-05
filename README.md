@@ -165,6 +165,8 @@ A demo link jumps straight into any room with every ability, which is handy for 
 
 **Web export.** It's exported with `thread_support=false`, so GitHub Pages can host it without COOP/COEP headers, and it uses the Compatibility renderer for WebGL2. CI runs the smoke test, exports the web build, and deploys the landing page at `/` and the game at `/play/`.
 
+**Beta tested on the live site ✅ (Nov 5, 2026).** After the first deploy I played the real GitHub Pages build in a browser: `/play/` boots past the loading bar to the title screen, New Game starts in the Loading Dock, running, jumping and slashing all respond, the next room loads, and the pause menu opens. There were no console errors.
+
 ## 🔗 Links
 
 - ▶ **Play:** <https://jaigod.github.io/voltline/play/>
